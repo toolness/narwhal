@@ -1,0 +1,16 @@
+#! /usr/bin/env python
+
+import os
+import sys
+
+NARWHAL_ENGINE_HOME = os.environ["NARWHAL_ENGINE_HOME"]
+
+sys.path.insert(0, os.path.join(NARWHAL_ENGINE_HOME, "python-lib"))
+
+import narwhal
+
+retval = narwhal.run(argv = sys.argv,
+                     home_dir = os.environ["NARWHAL_HOME"],
+                     engine_home_dir = NARWHAL_ENGINE_HOME)
+
+sys.exit(retval)
