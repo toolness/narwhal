@@ -9,7 +9,7 @@
      engines: ['pydermonkey', 'default'],
      os: pyder.info.os,
      print: function print() {
-       pyder.print.apply(pyder, arguments);
+       pyder.printString.apply(pyder, arguments);
      },
      fs: {
        read: function read() {

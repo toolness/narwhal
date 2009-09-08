@@ -23,9 +23,15 @@ class PyderApi(JsExposedObject):
 
     @property
     def info(self):
+        argv = ['/bin/narwhal'] + sys.argv[1:]
         return self._sandbox.new_object(
-            os = sys.platform
+            os = sys.platform,
+            argv = self._sandbox.new_array(*argv)
             );
+
+    @jsexposed
+    def exit(self, code):
+        sys.exit(code)
 
     @jsexposed
     def read(self, filename, args=None):
@@ -49,7 +55,7 @@ class PyderApi(JsExposedObject):
 
     @jsexposed
     def printString(self, *args):
-        print " ".join(args)
+        sys.stdout.write(" ".join(args))
 
     @jsexposed
     def evaluate(self, code, filename='<string>', lineno=1):
