@@ -31,6 +31,10 @@ class PyderApi(JsExposedObject):
 
     @jsexposed
     def exit(self, code):
+        if not code:
+            code = 0
+        elif type(code) != int:
+            code = -1
         sys.exit(code)
 
     @jsexposed
