@@ -22,18 +22,15 @@ exports.exists = function (path) {
 
 // TODO necessary for lazy module reloading in sandboxes
 exports.mtime = function (path) {
-    throw Error("mtime not yet implemented.");
+  return pyder.stat(path).mtime;
 };
 
 exports.size = function (path) {
-    throw Error("size not yet implemented.");
+  return pyder.stat(path).size;
 };
 
 exports.stat = function (path) {
-    return {
-        mtime: exports.mtime(path),
-        size: exports.size(path)
-    }
+  return pyder.stat(path);
 };
 
 exports.isDirectory = function (path) {

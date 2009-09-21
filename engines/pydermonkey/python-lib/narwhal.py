@@ -51,6 +51,17 @@ class PyderApi(JsExposedObject):
         return contents
 
     @jsexposed
+    def stat(self, filename):
+        path = self._real_path(filename)
+        if not path or not os.path.exists(path):
+            return None
+        info = os.stat(path)
+        return self._sandbox.new_object(
+            mtime = info.st_mtime,
+            size = int(info.st_size)
+            )
+
+    @jsexposed
     def isFile(self, filename):
         path = self._real_path(filename)
         if not path:

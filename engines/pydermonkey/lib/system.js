@@ -34,7 +34,7 @@ exports.log = new Logger(
 
 //exports.env = {}; /*TODO*/
 
-//exports.fs = require('./file');
+exports.fs = require('./file');
 
 // default logger
 //var Logger = require("./logger").Logger;
