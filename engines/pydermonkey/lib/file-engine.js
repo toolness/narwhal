@@ -7,14 +7,13 @@ exports.cwd = function () {
     throw Error("cwd not yet implemented.");
 };
 
-// TODO necessary for package loading
 exports.list = function (path) {
-    throw Error("list not yet implemented.");
+  return pyder.listDirectory(path);
 };
 
-// TODO necessary for package loading
 exports.canonical = function (path) {
-    throw Error("canonical not yet implemented.");
+  // TODO fix this
+  return path;
 };
 
 exports.exists = function (path) {
@@ -37,20 +36,13 @@ exports.stat = function (path) {
     }
 };
 
-// TODO necessary for package loading
 exports.isDirectory = function (path) {
-    throw Error("isDirectory not yet implemented.");
+  return pyder.isDirectory(path);
 };
 
-// TODO necessary for module loading
 exports.isFile = function (path) {
-    throw Error("isFile not yet implemented.");
+  return pyder.isFile(path);
 };
-// XXX remove this if you implement isFile here
-// from bootstrap system object:
-exports.isFile = system.fs.isFile;
-
-exports.isFile = system.fs.isFile; // TEMPORARY HACK
 
 exports.isLink = function (path) {
     throw Error("isLink not yet implemented.");

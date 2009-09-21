@@ -42,8 +42,12 @@ class PyderApi(JsExposedObject):
             contents = open(path).read()
         except IOError, e:
             raise pydermonkey.error(str(e))
+        # TODO: Should we really be ignoring errors here?
         if args and args.charset:
-            contents = contents.decode(args.charset)
+            contents = contents.decode(args.charset, 'ignore')
+        else:
+            # TODO: Inflate the string instead?
+            contents = contents.decode('utf-8', 'ignore')
         return contents
 
     @jsexposed
@@ -52,6 +56,21 @@ class PyderApi(JsExposedObject):
         if not path:
             return False
         return os.path.isfile(path)
+
+    @jsexposed
+    def isDirectory(self, filename):
+        path = self._real_path(filename)
+        if not path:
+            return False
+        return os.path.isdir(path)
+
+    @jsexposed
+    def listDirectory(self, filename):
+        path = self._real_path(str(filename))
+        dirs = []
+        if path and os.path.isdir(path):
+            dirs.extend(os.listdir(path))
+        return self._sandbox.new_array(*dirs)
 
     @jsexposed
     def printString(self, *args):

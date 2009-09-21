@@ -8,6 +8,8 @@
      engine: 'pydermonkey',
      engines: ['pydermonkey', 'default'],
      os: pyder.info.os,
+     args: pyder.info.argv,
+     path: filename,
      print: function print() {
        pyder.printString.apply(pyder, arguments);
      },
@@ -19,8 +21,8 @@
          return pyder.isFile.apply(pyder, arguments);
        }
      },
-     prefix: "",
-     prefixes: [""],
+     prefix: "/",
+     prefixes: ["/"],
      evaluate: function evaluate(code, filename, lineno) {
        code = ("function(require,exports,module,system,print){" +
                code +

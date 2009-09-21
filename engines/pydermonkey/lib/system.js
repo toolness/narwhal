@@ -1,14 +1,28 @@
 exports.args = pyder.info.argv;
 exports.env = {};
 
-exports.stdout = {
-  write: function() {
-    pyder.printString.apply(pyder, arguments);
-  },
-  flush: function() {}
-};
+exports.stdout = (function() {
+    var buffer = [];
+    return {
+        write: function(text) {
+            buffer.push(text.toString());
+            return this;
+        },
+        flush: function() {
+            pyder.printString(buffer.join(""));
+            buffer = [];
+        }
+    };
+})();
 
 exports.stderr = exports.stdout;
+
+var Logger = require("./logger").Logger;
+exports.log = new Logger(
+  {write: function(message) {
+     pyder.printString(message + '\n');
+   }
+  });
 
 //var IO = require("./io").IO;
 
