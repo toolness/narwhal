@@ -36,6 +36,12 @@ exports.log = new Logger(
 
 exports.fs = require('./file');
 
+exports.env = {
+  get PWD() {
+    return pyder.cwd();
+  }
+};
+
 // default logger
 //var Logger = require("./logger").Logger;
 //exports.log = new Logger(exports.stdout);

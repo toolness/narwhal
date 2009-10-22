@@ -4,7 +4,7 @@ var exports = require('./file');
 exports.SEPARATOR = '/';
 
 exports.cwd = function () {
-    throw Error("cwd not yet implemented.");
+  return pyder.cwd();
 };
 
 exports.list = function (path) {
@@ -12,12 +12,11 @@ exports.list = function (path) {
 };
 
 exports.canonical = function (path) {
-  // TODO fix this
-  return path;
+  return pyder.canonical(path);
 };
 
 exports.exists = function (path) {
-    throw Error("exists not yet implemented.");
+  return pyder.exists(path);
 };
 
 // TODO necessary for lazy module reloading in sandboxes
