@@ -16,7 +16,7 @@ exports.canonical = function (path) {
 };
 
 exports.exists = function (path) {
-  return pyder.exists(path);
+  return pyder.exists(path) ? true : false;
 };
 
 // TODO necessary for lazy module reloading in sandboxes
@@ -33,11 +33,11 @@ exports.stat = function (path) {
 };
 
 exports.isDirectory = function (path) {
-  return pyder.isDirectory(path);
+  return pyder.isDirectory(path) ? true : false;
 };
 
 exports.isFile = function (path) {
-  return pyder.isFile(path);
+  return pyder.isFile(path) ? true : false;
 };
 
 exports.isLink = function (path) {
